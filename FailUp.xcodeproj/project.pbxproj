@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E25BAD9D2DAE37B5009280D5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E25BAD9C2DAE37B5009280D5 /* Lottie */; };
+		E2791D612DAFA3C900C4E281 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = E2791D602DAFA3C900C4E281 /* FSCalendar */; };
+		E2791D642DAFA7DD00C4E281 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = E2791D632DAFA7DD00C4E281 /* MijickCalendarView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2791D642DAFA7DD00C4E281 /* MijickCalendarView in Frameworks */,
 				E25BAD9D2DAE37B5009280D5 /* Lottie in Frameworks */,
+				E2791D612DAFA3C900C4E281 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +87,7 @@
 				E25BAD692DADFB1F009280D5 /* FailUp */,
 				E25BAD7A2DADFB20009280D5 /* FailUpTests */,
 				E25BAD842DADFB20009280D5 /* FailUpUITests */,
+				E2791D5F2DAFA3C300C4E281 /* Frameworks */,
 				E25BAD682DADFB1F009280D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +100,13 @@
 				E25BAD812DADFB20009280D5 /* FailUpUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E2791D5F2DAFA3C300C4E281 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +130,8 @@
 			name = FailUp;
 			packageProductDependencies = (
 				E25BAD9C2DAE37B5009280D5 /* Lottie */,
+				E2791D602DAFA3C900C4E281 /* FSCalendar */,
+				E2791D632DAFA7DD00C4E281 /* MijickCalendarView */,
 			);
 			productName = FailUp;
 			productReference = E25BAD672DADFB1F009280D5 /* FailUp.app */;
@@ -203,6 +217,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E25BAD9B2DAE37B5009280D5 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				E2791D5E2DAFA1A000C4E281 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				E2791D622DAFA68600C4E281 /* XCRemoteSwiftPackageReference "CalendarView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E25BAD682DADFB1F009280D5 /* Products */;
@@ -571,6 +587,22 @@
 				minimumVersion = 4.5.1;
 			};
 		};
+		E2791D5E2DAFA1A000C4E281 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+		E2791D622DAFA68600C4E281 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mijick/CalendarView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -578,6 +610,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E25BAD9B2DAE37B5009280D5 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		E2791D602DAFA3C900C4E281 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2791D5E2DAFA1A000C4E281 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		E2791D632DAFA7DD00C4E281 /* MijickCalendarView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2791D622DAFA68600C4E281 /* XCRemoteSwiftPackageReference "CalendarView" */;
+			productName = MijickCalendarView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

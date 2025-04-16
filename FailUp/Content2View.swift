@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct Content2View: View {
-
+    
     var body: some View {
         NavigationStack {
             VStack {
-                
-                ChallengeRecordView()
-
                 Divider()
                     .frame(height: 0.33)
-                    .background(Color.black)
                 
                 WriteView()
+                    .padding()
                 
                 EditCompletedView()
-                
+                    .padding()
             }
+            
+            .navigationTitle("나의 도전 기록")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -18,8 +18,7 @@ struct WriteView: View {
                     if inputText.isEmpty {
                         Text("무엇을 했을지 너무 궁금하다...")
                             .foregroundColor(Color(red: 0.768, green: 0.768, blue: 0.78)) // C4C4C7
-                            .padding(.leading, 8)
-                            .padding(.top, 12)
+
                     }
                     TextField("", text: $inputText)
                         .onChange(of: inputText) { // iOS 17 이상은 파라미터 없이 사용 권장
@@ -27,7 +26,6 @@ struct WriteView: View {
                                 inputText = String(inputText.prefix(20))
                             }
                         }
-                        .padding()
                         .font(.body)
                 }
                 .padding(.horizontal, 24)

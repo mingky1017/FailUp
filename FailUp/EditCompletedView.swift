@@ -27,7 +27,6 @@ struct EditCompletedView: View {
                 .cornerRadius(12)
         }
         .padding(.horizontal, 24)
-        .padding(.bottom, 24)
     }
 }
 
