@@ -6,10 +6,9 @@
 //
 import SwiftUI
 
-struct Content1View: View {
+struct MainView: View {
     @State private var inputText: String = "" // 입력값 저장
     @State private var kg: Int = 0            // kg 값 저장
-    
     
     var body: some View {
         NavigationStack {
@@ -43,5 +42,5 @@ struct Content1View: View {
     }
 }
 #Preview {
-    Content1View()
+    MainView()
 }

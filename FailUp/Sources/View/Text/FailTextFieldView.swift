@@ -10,7 +10,13 @@ import SwiftUI
 struct FailTextFieldView: View {
     @Binding var inputText: String
     @Binding var kg: Int
-
+    var onCommit: (String) -> Void = { text in
+        var failData: FailData = .shared
+        failData.fails.append(
+            FailItem(text: text, date: Date())
+        )
+    }
+    
     var body: some View {
         HStack {
             HStack {
@@ -19,10 +25,8 @@ struct FailTextFieldView: View {
                         if inputText.count > 20 {
                             inputText = String(inputText.prefix(20))
                         }
-                        print(inputText)
                     }
                     .font(.system(size: 16))
-                // 입력 중이 아니면 연한 회색, 입력 중이면 파란색
                 Image(systemName: "arrow.up.circle.fill")
                     .resizable()
                     .frame(width: 24, height: 24)
@@ -30,7 +34,7 @@ struct FailTextFieldView: View {
                     .padding(.trailing, 4)
                     .onTapGesture {
                         if !inputText.isEmpty {
-                            print("입력값: \(inputText)")
+                            onCommit(inputText)
                             kg += 10
                             inputText = ""
                         }

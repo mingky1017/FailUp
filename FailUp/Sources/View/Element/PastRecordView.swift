@@ -11,7 +11,7 @@ struct PastRecordView: View {
     var body: some View {
             VStack {
                 // 지난 기록 보기 버튼
-                NavigationLink(destination: RecordView()) {
+                NavigationLink(destination: RecordListView()) {
                     Text("지난 기록 보기")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(Color(red: 0.431, green: 0.431, blue: 0.431))

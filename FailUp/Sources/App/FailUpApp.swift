@@ -11,7 +11,7 @@ import SwiftUI
 struct FailUpApp: App {
     var body: some Scene {
         WindowGroup {
-            Content1View()
+            MainView()
         }
     }
 }

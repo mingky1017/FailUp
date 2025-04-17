@@ -7,17 +7,21 @@
 
 import SwiftUI
 
-struct Content2View: View {
+struct ChallengeRecordEditView: View {
+    @Binding var failItem: FailItem
     
     var body: some View {
+        // 0. 상단 제목
         NavigationStack {
+            
             VStack {
+                // 1. 선
                 Divider()
                     .frame(height: 0.33)
-                
-                WriteView()
+                // 2. 작성
+                WriteView(failItem: $failItem)
                     .padding()
-                
+                // 3. 수정 완료 버튼
                 EditCompletedView()
                     .padding()
             }
@@ -28,6 +32,10 @@ struct Content2View: View {
     }
 }
 
-#Preview {
-    Content2View()
+struct ChallengeRecordEditView_Previews: PreviewProvider {
+    @State static var failItem: FailItem = FailData.shared.fails[0]
+    
+    static var previews: some View {
+        ChallengeRecordEditView(failItem: $failItem)
+    }
 }
