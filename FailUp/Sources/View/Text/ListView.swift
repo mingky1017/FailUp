@@ -7,32 +7,35 @@
 
 import SwiftUI
 
-
-
 struct FailListView: View {
-//    @State var fails: [FailItem] = []
-//    var failData: FailData = .shared
     @State var fails: [FailItem] = FailData.shared.fails
-    
+
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach($fails) { fail in
-                    NavigationLink {
-                        ChallengeRecordEditView(
-                            failItem: fail) // 리스트의 텍스트를 전달
+        List {
+            ForEach($fails) { fail in
+                NavigationLink(destination: ChallengeRecordEditView(failItem: fail)) {
+                    Text(fail.wrappedValue.text)
+                        .font(.system(size: 15))
+                }
+                .swipeActions {
+                    Button(role: .destructive) {
+                        // 삭제 동작
+                        if let index = fails.firstIndex(where: { $0.id == fail.wrappedValue.id }) {
+                            fails.remove(at: index)
+                        }
                     } label: {
-                        Text(fail.wrappedValue.text)
-                            .font(.system(size: 15))
+                        Label("삭제", systemImage: "trash") // "trash" SF 심볼
                     }
                 }
             }
-            .listStyle(.plain)
         }
+        .listStyle(.plain)
     }
 }
 
 #Preview {
-    FailListView()
+    NavigationStack {
+        FailListView()
+    }
 }
 

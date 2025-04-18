@@ -37,7 +37,6 @@ struct MainView: View {
                 .foregroundColor(Color(red: 0.431, green: 0.341, blue: 0.055)) // 6E570E
             }
             .padding(.horizontal, 5)
-            
         }
     }
 }
