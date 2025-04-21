@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FailUpApp: App {
@@ -13,5 +14,6 @@ struct FailUpApp: App {
         WindowGroup {
             MainView()
         }
+//        .modelContainer(for: [FailItem.self])
     }
 }
