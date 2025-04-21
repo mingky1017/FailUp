@@ -31,8 +31,8 @@ struct MainTextView: View {
                 Spacer()
                 Text("실패")
                     .fontWeight(.semibold)
-                Text("\(kg)kg")
-                    .fontWeight(.semibold) // kg 값 표시
+                Text("\(FailData.shared.kg)kg")
+                    .fontWeight(.semibold)
                     .foregroundColor(Color.red)
                 Text("성공!")
                     .fontWeight(.semibold)

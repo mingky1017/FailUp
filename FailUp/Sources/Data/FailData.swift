@@ -34,9 +34,6 @@ class FailData: ObservableObject {
     
     init() {
         loadData()
-        if fails.isEmpty {
-            fails = [FailItem(text: "첫 번째 실패")]
-        }
     }
     
     func addFail(text: String, date: Date) {

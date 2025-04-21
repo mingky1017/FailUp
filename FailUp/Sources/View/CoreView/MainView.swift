@@ -17,27 +17,17 @@ extension View {
 
 struct MainView: View {
     @ObservedObject var failData = FailData.shared
-    @State private var inputText: String = "" // 입력값 저장
-    @State private var kg: Int = 0            // kg 값 저장
-    @State private var showAlert = false // 알림창
-    
-    enum Field: Hashable {
-        case main
-    }
-    
+    @State private var inputText: String = ""
+
     var body: some View {
         NavigationStack {
             VStack {
-                // 1. 메인 텍스트 뷰
-                MainTextView(kg: kg)
+                MainTextView(kg: failData.kg)
                     .padding(.bottom, 30)
-                // 2. Lottie 이미지
                 LottieView(filename: "muscles")
                     .frame(width: 300, height: 300)
                     .padding(.bottom, 30)
-                // 3. 텍스트 입력 창
-                FailTextFieldView(failData: failData, inputText: $inputText, kg: $kg)
-                // 4. 지난 기록 보기
+                FailTextFieldView(failData: failData, inputText: $inputText)
                 PastRecordView()
                     .padding(.bottom, 30)
                 VStack {
@@ -49,7 +39,7 @@ struct MainView: View {
                         .fontWeight(.semibold)
                 }
                 .font(.system(size: 16))
-                .foregroundColor(Color(red: 0.431, green: 0.341, blue: 0.055)) // 6E570E
+                .foregroundColor(Color(red: 0.431, green: 0.341, blue: 0.055))
             }
             .padding(.horizontal, 5)
             .onTapGesture {
@@ -58,6 +48,7 @@ struct MainView: View {
         }
     }
 }
+
 #Preview {
     MainView()
 }
