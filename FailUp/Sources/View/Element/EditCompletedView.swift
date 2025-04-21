@@ -8,25 +8,15 @@
 import SwiftUI
 
 struct EditCompletedView: View {
+    @Binding var failItem: FailItem
     @Environment(\.dismiss) private var dismiss
-    @State private var inputText: String = ""
-    @State private var isClicked: Bool = false // 버튼 클릭 상태
+    @State private var isClicked: Bool = false
 
-//    struct EditCompletedView: View {
-//        @Binding var isEditCompleted: Bool
-//
-//        var body: some View {
-//            if isEditCompleted {
-//                MainView()
-//            } else {
-//                EditCompletedView(isEditCompleted: $isEditCompleted)
-//            }
-//        }
-//    }
     var body: some View {
         VStack {
             Button(action: {
                 isClicked = true
+                // failItem을 여기서 활용
                 dismiss()
             }) {
                 Text("수정 완료")
@@ -41,12 +31,14 @@ struct EditCompletedView: View {
             }
             .padding(.horizontal, 24)
         }
-        // 여기가 핵심!
-//        .navigationDestination(isPresented: $isClicked) {
-//            MainView()
-//        }
     }
 }
-//#Preview {
-//    EditCompletedView()
-//}
+#Preview {
+    struct PreviewWrapper: View {
+        @State var failItem = FailItem(text: "프리뷰 실패")
+        var body: some View {
+            EditCompletedView(failItem: $failItem)
+        }
+    }
+    return PreviewWrapper()
+}

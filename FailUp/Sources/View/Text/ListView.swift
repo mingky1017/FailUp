@@ -8,31 +8,37 @@
 import SwiftUI
 
 struct FailListView: View {
-    @State var fails: [FailItem] = FailData.shared.fails
-
+    @ObservedObject var failData = FailData.shared
+    
     var body: some View {
         List {
-            ForEach($fails) { fail in
-                NavigationLink(destination: ChallengeRecordEditView(failItem: fail)) {
-                    Text(fail.wrappedValue.text)
+            ForEach(failData.fails) { fail in
+                NavigationLink(destination: ChallengeRecordEditView(failItem: bindingForFail(fail))) {
+                    Text(fail.text)
                         .font(.system(size: 15))
                 }
                 .swipeActions {
                     Button(role: .destructive) {
-                        // 삭제 동작
-                        if let index = fails.firstIndex(where: { $0.id == fail.wrappedValue.id }) {
-                            fails.remove(at: index)
+                        if let index = failData.fails.firstIndex(where: { $0.id == fail.id }) {
+                            failData.removeFail(at: IndexSet(integer: index))
                         }
                     } label: {
-                        Label("삭제", systemImage: "trash") // "trash" SF 심볼
+                        Label("삭제", systemImage: "trash")
                     }
                 }
             }
         }
         .listStyle(.plain)
     }
+    
+    // 바인딩 생성 함수
+    func bindingForFail(_ fail: FailItem) -> Binding<FailItem> {
+        guard let index = failData.fails.firstIndex(where: { $0.id == fail.id }) else {
+            fatalError("Fail not found")
+        }
+        return $failData.fails[index]
+    }
 }
-
 #Preview {
     NavigationStack {
         FailListView()

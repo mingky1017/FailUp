@@ -28,11 +28,6 @@ struct PastRecordView: View {
         }
     }
 }
-
-//#Preview {
-//    PastRecordView()
-//}
-
 struct PastRecordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

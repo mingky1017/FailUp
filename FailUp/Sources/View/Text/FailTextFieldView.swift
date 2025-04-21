@@ -4,10 +4,10 @@
 //
 //  Created by 윤민경 on 4/15/25.
 //
-
 import SwiftUI
 
 struct FailTextFieldView: View {
+    @ObservedObject var failData: FailData
     @Binding var inputText: String
     @Binding var kg: Int
     var onCommit: (String) -> Void = { text in
@@ -16,7 +16,8 @@ struct FailTextFieldView: View {
             FailItem(text: text, date: Date())
         )
     }
-    
+    @State private var showAlert = false // 1. alert 상태 변수 추가
+
     var body: some View {
         HStack {
             HStack {
@@ -34,9 +35,7 @@ struct FailTextFieldView: View {
                     .padding(.trailing, 4)
                     .onTapGesture {
                         if !inputText.isEmpty {
-                            onCommit(inputText)
-                            kg += 10
-                            inputText = ""
+                            showAlert = true // 2. 바로 실행하지 않고 alert 표시
                         }
                     }
             }
@@ -46,11 +45,24 @@ struct FailTextFieldView: View {
             .cornerRadius(10)
         }
         .padding(.horizontal, 24)
+        // 3. alert 모디파이어 추가
+        .alert("작성히 끝났나요?", isPresented: $showAlert) {
+            Button("취소", role: .cancel) { }
+            Button("완료", role: .destructive) {
+                // 4. 완료 버튼에서만 실제 동작 실행
+                onCommit(inputText)
+                kg += 10
+                inputText = ""
+            }
+        } message: {
+            Text("실패를 기록한 당신, 너무 멋있어요! 💪")
+        }
     }
 }
-
 #Preview {
     FailTextFieldView(
-        inputText: .constant(""), kg: .constant(0)
+        failData: FailData.shared,
+        inputText: .constant(""),
+        kg: .constant(0)
     )
 }

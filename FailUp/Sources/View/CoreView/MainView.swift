@@ -6,9 +6,24 @@
 //
 import SwiftUI
 
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+
 struct MainView: View {
+    @ObservedObject var failData = FailData.shared
     @State private var inputText: String = "" // 입력값 저장
     @State private var kg: Int = 0            // kg 값 저장
+    @State private var showAlert = false // 알림창
+    
+    enum Field: Hashable {
+        case main
+    }
     
     var body: some View {
         NavigationStack {
@@ -21,7 +36,7 @@ struct MainView: View {
                     .frame(width: 300, height: 300)
                     .padding(.bottom, 30)
                 // 3. 텍스트 입력 창
-                FailTextFieldView(inputText: $inputText, kg: $kg)
+                FailTextFieldView(failData: failData, inputText: $inputText, kg: $kg)
                 // 4. 지난 기록 보기
                 PastRecordView()
                     .padding(.bottom, 30)
@@ -37,6 +52,9 @@ struct MainView: View {
                 .foregroundColor(Color(red: 0.431, green: 0.341, blue: 0.055)) // 6E570E
             }
             .padding(.horizontal, 5)
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
     }
 }
