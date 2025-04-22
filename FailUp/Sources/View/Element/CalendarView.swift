@@ -7,17 +7,22 @@
 
 import SwiftUI
 
+// CalendarView.swift
 struct CalendarView: View {
-    @State private var date = Date()
+    @Binding var selectedDate: Date // @Binding 추가
+
     var body: some View {
         DatePicker(
             "Start Date",
-            selection: $date,
+            selection: $selectedDate,
             displayedComponents: [.date]
         )
         .datePickerStyle(.graphical)
     }
 }
+
+// 프리뷰 수정
 #Preview {
-    CalendarView()
+    CalendarView(selectedDate: .constant(Date())) // 프리뷰에 파라미터 추가
 }
+

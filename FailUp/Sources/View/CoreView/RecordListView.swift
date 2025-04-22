@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct RecordListView: View {
+    @State private var selectedDate = Date() // 기본값: 오늘
+
     var body: some View {
         VStack {
             Divider()
                 .frame(height: 0.33)
-            CalendarView()
+            CalendarView(selectedDate: $selectedDate) // 바인딩 전달
             Divider()
                 .frame(height: 0.33)
-            FailListView()
+            FailListView(selectedDate: selectedDate) // 선택된 날짜 전달
             Text("실패해도 괜찮아, 잘하고 있어!")
                 .font(.system(size: 12))
                 .fontWeight(.regular)

@@ -9,9 +9,16 @@ import SwiftUI
 
 struct FailListView: View {
     @ObservedObject var failData = FailData.shared
-
+    var selectedDate: Date // 추가
+    
     var body: some View {
-        if failData.fails.isEmpty {
+        // 1. 선택된 날짜와 같은 날의 기록만 필터링
+        let filteredFails = failData.fails.filter {
+            Calendar.current.isDate($0.date, inSameDayAs: selectedDate)
+        }
+
+        // 2. 필터링된 배열로 표시
+        if filteredFails.isEmpty {
             VStack {
                 Spacer()
                 Text("작성된 도전 기록이 없습니다")
@@ -22,7 +29,7 @@ struct FailListView: View {
             }
         } else {
             List {
-                ForEach(failData.fails) { fail in
+                ForEach(filteredFails) { fail in
                     NavigationLink(destination: ChallengeRecordEditView(failItem: bindingForFail(fail))) {
                         Text(fail.text)
                             .font(.system(size: 15))
@@ -50,9 +57,9 @@ struct FailListView: View {
         return $failData.fails[index]
     }
 }
+
 #Preview {
     NavigationStack {
-        FailListView()
+        FailListView(selectedDate: Date())
     }
 }
-

@@ -37,11 +37,11 @@ struct FailTextFieldView: View {
         .cornerRadius(10)
         .padding(.horizontal, 24)
         .alert("작성이 끝났나요?", isPresented: $showAlert) {
-            Button("취소", role: .cancel) { }
-            Button("완료", role: .destructive) {
+            Button("취소", role: .destructive) { } // 빨간색
+            Button("완료", role: .cancel) {
                 failData.addFail(text: inputText, date: Date())
                 inputText = ""
-            }
+            } // 파란색
         } message: {
             Text("실패를 기록한 당신, 너무 멋있어요! 💪")
         }
